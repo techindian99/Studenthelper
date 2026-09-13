@@ -8,7 +8,7 @@
 #  ✅ AUTOMATIC — file repo me hote hi chalu
 #
 #  👇 BAS YE EK LINE BADLO (apna Render URL daalo):
-#      https://studenthelper.onrender.com/healthz
+#      https://studenthelper-5acc.onrender.com/
 #  ============================================================================
 name: keep-alive
 
@@ -25,7 +25,7 @@ jobs:
       - name: STUDY HELPER ko jagaao
         run: |
           # 👇 YAHAN APNA RENDER URL LIKHO (wahi .onrender.com wala link)
-          URL="https://studenthelper.onrender.com/healthz"
+          URL="https://studenthelper-5acc.onrender.com/"
           echo "Pinging: $URL"
           for i in 1 2 3; do
             CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "$URL" || echo "000")
