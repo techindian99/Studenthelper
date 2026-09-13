@@ -1,0 +1,39 @@
+# ============================================================================
+#  KEEP-ALIVE — STUDY HELPER ko Render par kabhi sone mat do 😴🚫
+#  ---------------------------------------------------------------------------
+#  GitHub HAR 5 minute me aapke app ko ping karega → Render ka free instance
+#  kabhi 15-min idle nahi hoga → kabhi so nahi jayega.
+#
+#  ✅ FREE — koi UptimeRobot/account nahi chahiye
+#  ✅ AUTOMATIC — file repo me hote hi chalu
+#
+#  👇 BAS YE EK LINE BADLO (apna Render URL daalo):
+#      https://studenthelper.onrender.com/healthz
+#  ============================================================================
+name: keep-alive
+
+on:
+  schedule:
+    # Har 5 minute par (GitHub ka minimum reliable interval)
+    - cron: "*/5 * * * *"
+  workflow_dispatch:   # haath se bhi chala sakte ho (Actions tab me Run)
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: STUDY HELPER ko jagaao
+        run: |
+          # 👇 YAHAN APNA RENDER URL LIKHO (wahi .onrender.com wala link)
+          URL="https://studenthelper.onrender.com/healthz"
+          echo "Pinging: $URL"
+          for i in 1 2 3; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "$URL" || echo "000")
+            echo "Attempt $i → HTTP $CODE"
+            if [ "$CODE" = "200" ]; then
+              echo "✅ STUDY HELPER awake hai!"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "⚠️ Is baar nahi jag paya (cold start me 50s+ lag sakta hai) — agle run me theek ho jayega"
